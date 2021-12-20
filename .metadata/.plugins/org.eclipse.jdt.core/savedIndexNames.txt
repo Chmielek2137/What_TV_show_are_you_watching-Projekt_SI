@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+D:\PP\Sztuczna inteligencja\Laboratorium\L2\System ekspertcki\TV\.metadata\.plugins\org.eclipse.jdt.core
+20854515.index
+1865797976.index
+2212354885.index
