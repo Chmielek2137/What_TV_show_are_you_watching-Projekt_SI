@@ -258,7 +258,7 @@
 
 (defrule determine-covers ""
 
-   (logical (sing Yes))
+   (logical (sing BigTime))
 
    =>
 
