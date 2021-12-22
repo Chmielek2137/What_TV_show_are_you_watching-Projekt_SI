@@ -308,7 +308,7 @@
 
    (assert (UI-state (display CupcakesQuestion)
                      (relation-asserted cupcakes)
-                     (response Amazing
+                     (response Amazing)
                      (valid-answers Amazing YouKnowIt James))))
 
 (defrule determine-mother ""
