@@ -2,12 +2,12 @@
 ;;;======================================================
 ;;;   Automotive Expert System
 ;;;
-;;;     This expert system diagnoses some simple
-;;;     problems with a car.
+;;;     This expert system recognize
+;;;     what TV show are you watching
 ;;;
-;;;     CLIPS Version 6.3 Example
+;;;     CLIPS Version 6.3
 ;;;
-;;;     For use with the Auto Demo Example
+;;;
 ;;;======================================================
 
 ;;; ***************************
