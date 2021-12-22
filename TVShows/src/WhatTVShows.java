@@ -51,7 +51,7 @@ class WhatTVShows implements ActionListener
    JButton prevButton;
    JPanel choicesPanel;
    ButtonGroup choicesButtons;
-   ResourceBundle autoResources;
+   ResourceBundle tvShowsResources;
  
    Environment clips;
    boolean isExecuting = false;
@@ -61,7 +61,7 @@ class WhatTVShows implements ActionListener
      {  
       try
         {
-         autoResources = ResourceBundle.getBundle("resources.TVShowsResources",Locale.getDefault());
+         tvShowsResources = ResourceBundle.getBundle("resources.TVShowsResources",Locale.getDefault());
         }
       catch (MissingResourceException mre)
         {
@@ -73,7 +73,7 @@ class WhatTVShows implements ActionListener
       /* Create a new JFrame container. */
       /*================================*/
      
-      JFrame jfrm = new JFrame(autoResources.getString("AutoDemo"));  
+      JFrame jfrm = new JFrame(tvShowsResources.getString("TVShows"));  
  
       /*=============================*/
       /* Specify FlowLayout manager. */
@@ -114,12 +114,12 @@ class WhatTVShows implements ActionListener
 
       JPanel buttonPanel = new JPanel(); 
       
-      prevButton = new JButton(autoResources.getString("Prev"));
+      prevButton = new JButton(tvShowsResources.getString("Prev"));
       prevButton.setActionCommand("Prev");
       buttonPanel.add(prevButton);
       prevButton.addActionListener(this);
       
-      nextButton = new JButton(autoResources.getString("Next"));
+      nextButton = new JButton(tvShowsResources.getString("Next"));
       nextButton.setActionCommand("Next");
       buttonPanel.add(nextButton);
       nextButton.addActionListener(this);
@@ -133,7 +133,7 @@ class WhatTVShows implements ActionListener
       jfrm.getContentPane().add(buttonPanel); 
 
       /*========================*/
-      /* Load the auto program. */
+      /* Load the TV shows program. */
       /*========================*/
       
       clips = new Environment();
@@ -141,7 +141,7 @@ class WhatTVShows implements ActionListener
       clips.load("TVShows.clp");
       
       clips.reset();
-      runAuto();
+      runTVShows();
 
       /*====================*/
       /* Display the frame. */
@@ -179,19 +179,19 @@ class WhatTVShows implements ActionListener
       if (fv.getFactSlot("state").toString().equals("final"))
         { 
          nextButton.setActionCommand("Restart");
-         nextButton.setText(autoResources.getString("Restart")); 
+         nextButton.setText(tvShowsResources.getString("Restart")); 
          prevButton.setVisible(true);
         }
       else if (fv.getFactSlot("state").toString().equals("initial"))
         {
          nextButton.setActionCommand("Next");
-         nextButton.setText(autoResources.getString("Next"));
+         nextButton.setText(tvShowsResources.getString("Next"));
          prevButton.setVisible(false);
         }
       else
         { 
          nextButton.setActionCommand("Next");
-         nextButton.setText(autoResources.getString("Next"));
+         nextButton.setText(tvShowsResources.getString("Next"));
          prevButton.setVisible(true);
         }
       
@@ -212,9 +212,9 @@ class WhatTVShows implements ActionListener
          JRadioButton rButton;
                         
          if (bv.toString().equals(selected))
-            { rButton = new JRadioButton(autoResources.getString(bv.toString()),true); }
+            { rButton = new JRadioButton(tvShowsResources.getString(bv.toString()),true); }
          else
-            { rButton = new JRadioButton(autoResources.getString(bv.toString()),false); }
+            { rButton = new JRadioButton(tvShowsResources.getString(bv.toString()),false); }
                      
          rButton.setActionCommand(bv.toString());
          choicesPanel.add(rButton);
@@ -227,7 +227,7 @@ class WhatTVShows implements ActionListener
       /* Set the label to the display text. */
       /*====================================*/
 
-      String theText = autoResources.getString(fv.getFactSlot("display").symbolValue());
+      String theText = tvShowsResources.getString(fv.getFactSlot("display").symbolValue());
             
       wrapLabelText(displayLabel,theText);
       
@@ -253,9 +253,9 @@ class WhatTVShows implements ActionListener
      }
  
    /***********/
-   /* runAuto */
+   /* runTVShows */
    /***********/  
-   public void runAuto()
+   public void runTVShows()
      {
       Runnable runThread = 
          new Runnable()
@@ -316,17 +316,17 @@ class WhatTVShows implements ActionListener
                                ")");
            }
            
-         runAuto();
+         runTVShows();
         }
       else if (ae.getActionCommand().equals("Restart"))
         { 
          clips.reset(); 
-         runAuto();
+         runTVShows();
         }
       else if (ae.getActionCommand().equals("Prev"))
         {
          clips.assertString("(prev " + currentID + ")");
-         runAuto();
+         runTVShows();
         }
      }
 
