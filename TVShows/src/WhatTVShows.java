@@ -1,16 +1,14 @@
-import javax.swing.*; 
-import javax.swing.border.*; 
-import javax.swing.table.*;
-import java.awt.*; 
-import java.awt.event.*; 
+import CLIPSJNI.Environment;
+import CLIPSJNI.PrimitiveValue;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.BreakIterator;
-
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.MissingResourceException;
- 
-import CLIPSJNI.*;
+import java.util.ResourceBundle;
 
 /* Implement FindFact which returns just a FactAddressValue or null */
 /* TBD Add size method to PrimitiveValue */
@@ -85,7 +83,7 @@ class WhatTVShows implements ActionListener
       /* Give the frame an initial size. */
       /*=================================*/
      
-      jfrm.setSize(350,200);  
+      jfrm.setSize(700,400);
   
       /*=============================================================*/
       /* Terminate the program when the user closes the application. */
@@ -228,7 +226,14 @@ class WhatTVShows implements ActionListener
       /*====================================*/
 
       String theText = tvShowsResources.getString(fv.getFactSlot("display").symbolValue());
-            
+
+      if( fv.getFactSlot("state").toString().equals("final") ) {
+          if (theText.equals("Grimm"))
+              theText = "Oh my gosh, you must be the one person on the planet watching Grimm! It is an honor to meet you!";
+          else
+              theText = "You're watching " + theText + "!";
+      }
+
       wrapLabelText(displayLabel,theText);
       
       executionThread = null;
