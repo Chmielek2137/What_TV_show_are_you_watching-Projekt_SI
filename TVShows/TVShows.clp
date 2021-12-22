@@ -443,7 +443,7 @@
 
 (defrule dead ""
 
-   (logical (zombies ZombiesAllTheTime))
+   (logical (real-zombies ZombiesAllTheTime))
 
    =>
 
@@ -452,7 +452,7 @@
 
 (defrule community ""
 
-   (logical (zombies No))
+   (logical (real-zombies No))
 
    =>
 
